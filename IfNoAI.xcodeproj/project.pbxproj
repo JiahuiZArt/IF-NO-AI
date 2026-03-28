@@ -24,6 +24,7 @@
 		A00000000000000000000024 /* CivilizationEra.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000026 /* CivilizationEra.swift */; };
 		A00000000000000000000025 /* CinematicGrowthStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000027 /* CinematicGrowthStage.swift */; };
 		A00000000000000000000028 /* AsteroidImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000029 /* AsteroidImpactView.swift */; };
+		A00000000000000000000032 /* LaunchFlowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000033 /* LaunchFlowViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		A00000000000000000000026 /* CivilizationEra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilizationEra.swift; sourceTree = "<group>"; };
 		A00000000000000000000027 /* CinematicGrowthStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinematicGrowthStage.swift; sourceTree = "<group>"; };
 		A00000000000000000000029 /* AsteroidImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidImpactView.swift; sourceTree = "<group>"; };
+		A00000000000000000000033 /* LaunchFlowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFlowViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				A00000000000000000000023 /* FocusGrowthView.swift */,
 				A00000000000000000000027 /* CinematicGrowthStage.swift */,
 				A00000000000000000000029 /* AsteroidImpactView.swift */,
+				A00000000000000000000033 /* LaunchFlowViews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				A00000000000000000000024 /* CivilizationEra.swift in Sources */,
 				A00000000000000000000025 /* CinematicGrowthStage.swift in Sources */,
 				A00000000000000000000028 /* AsteroidImpactView.swift in Sources */,
+				A00000000000000000000032 /* LaunchFlowViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

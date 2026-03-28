@@ -35,13 +35,10 @@ struct HomeView: View {
 
                 FocusGrowthView(progress: 0, isWithered: false, isIdlePreview: true, compact: true)
 
-                Text("本轮 \(viewModel.selectedDuration) 分钟 · \(CivilizationEra.evolutionTitlesJoined)")
-                    .font(.caption2.weight(.medium))
-                    .foregroundStyle(.tertiary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    .padding(.top, 4)
-                    .padding(.horizontal, 4)
+                Text("本轮 \(viewModel.selectedDuration) 分钟")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.white.opacity(0.45))
+                    .padding(.top, 6)
 
                 HStack(alignment: .top, spacing: 10) {
                     playfulDurationCard
@@ -65,12 +62,18 @@ struct HomeView: View {
         .familyActivityPicker(isPresented: $viewModel.showPicker, selection: $viewModel.selectedApps)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Text("如果没有AI")
+                    .font(.headline.weight(.bold))
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showForestSheet = true
                 } label: {
                     Image(systemName: "leaf.circle.fill")
+                        .font(.body)
                         .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(.cyan.opacity(0.95))
                 }
                 .accessibilityLabel("文明足迹")
             }
@@ -92,28 +95,17 @@ struct HomeView: View {
 
     private var headerStrip: some View {
         HStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text("如果没有AI")
-                    .font(.title2.bold())
-                HStack(spacing: 6) {
-                    Text(viewModel.cityState.level.title)
-                        .font(.caption.weight(.semibold))
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Capsule().fill(Color.white.opacity(0.08)))
-                    Text("连胜 \(viewModel.streak)")
-                        .font(.caption.weight(.bold))
-                        .foregroundStyle(.cyan)
-                }
-                Text(viewModel.cityState.landMilestoneHint)
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.75)
-            }
+            Text(viewModel.cityState.level.title)
+                .font(.subheadline.weight(.semibold))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(Capsule().fill(Color.white.opacity(0.08)))
+            Text("连胜 \(viewModel.streak)")
+                .font(.subheadline.weight(.bold))
+                .foregroundStyle(.cyan)
             Spacer(minLength: 0)
         }
-        .padding(.bottom, 6)
+        .padding(.bottom, 4)
     }
 
     private var playfulDurationCard: some View {
@@ -208,25 +200,16 @@ struct HomeView: View {
         } label: {
             ZStack(alignment: .topTrailing) {
                 RoundedRectangle(cornerRadius: 18, style: .continuous)
-                    .fill(Color.white.opacity(0.06))
+                    .fill(Color.white.opacity(0.055))
                     .overlay(
                         RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .strokeBorder(
-                                LinearGradient(
-                                    colors: [Color.purple.opacity(0.5), Color.cyan.opacity(0.25)],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                ),
-                                lineWidth: 1
-                            )
+                            .strokeBorder(Color.white.opacity(0.1), lineWidth: 1)
                     )
 
                 VStack(alignment: .leading, spacing: 6) {
-                    Label("AI 上锁", systemImage: "hand.raised.fill")
+                    Label("屏蔽 AI", systemImage: "hand.raised.fill")
                         .font(.caption.weight(.heavy))
-                        .foregroundStyle(
-                            LinearGradient(colors: [.purple.opacity(0.95), .cyan], startPoint: .leading, endPoint: .trailing)
-                        )
+                        .foregroundStyle(.white.opacity(0.92))
                     Text(appTileSubtitle)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
@@ -253,7 +236,7 @@ struct HomeView: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .frame(minHeight: 148)
+            .frame(minHeight: 132)
         }
         .buttonStyle(ScaleOnPressButtonStyle())
     }
@@ -270,16 +253,16 @@ struct HomeView: View {
                     .foregroundStyle(viewModel.failOnBackground ? .orange : .cyan)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(viewModel.failOnBackground ? "切后台 = 这棵树枯萎" : "允许短暂离开 App")
+                    Text(viewModel.failOnBackground ? "离开 App 则本轮清零" : "允许短暂离开 App")
                         .font(.subheadline.weight(.semibold))
-                    Text(viewModel.failOnBackground ? "像死守片场 · 再点可放宽" : "更温柔模式 · 点一下变严")
+                    Text(viewModel.failOnBackground ? "严苛模式 · 再点可放宽" : "宽松模式 · 再点可收紧")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
                 Spacer(minLength: 0)
                 Image(systemName: "arrow.left.arrow.right.circle.fill")
                     .font(.title3)
-                    .foregroundStyle(.tertiary)
+                    .foregroundStyle(.white.opacity(0.38))
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 12)

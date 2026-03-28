@@ -44,26 +44,13 @@ struct FocusGrowthView: View {
     private var header: some View {
         if isIdlePreview {
             if compact {
-                Text(CivilizationEra.evolutionTitlesJoined)
-                    .font(.caption2.weight(.medium))
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.42)
-                    .frame(maxWidth: .infinity)
+                EmptyView()
             } else {
-                VStack(spacing: 8) {
-                    Text("从荒原到城市文明 · 八阶演进")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                        .tracking(3)
-                    Text(CivilizationEra.evolutionTitlesJoined)
-                        .font(.system(.footnote, design: .serif))
-                        .italic()
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(4)
-                        .foregroundStyle(.primary.opacity(0.92))
-                }
-                .padding(.horizontal, 4)
+                Text("专注进行中，时间在推着文明向前")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 8)
             }
         } else {
             Text(blurbLine)
