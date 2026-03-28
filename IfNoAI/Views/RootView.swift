@@ -9,8 +9,7 @@ struct RootView: View {
         NavigationStack(path: $path) {
             HomeView(
                 viewModel: viewModel,
-                onStart: { path.append(.start) },
-                onSettings: { path.append(.settings) }
+                onStart: { path.append(.start) }
             )
             .navigationDestination(for: AppRoute.self) { route in
                 switch route {
@@ -29,17 +28,15 @@ struct RootView: View {
                             }
                         }
                 case .success:
-                    SuccessView(streak: viewModel.streak) {
+                    SuccessView(record: viewModel.records.first, streak: viewModel.streak) {
                         viewModel.resetToIdle()
                         path = []
                     }
                 case .failed:
-                    FailView {
+                    FailView(record: viewModel.records.first) {
                         viewModel.resetToIdle()
                         path = []
                     }
-                case .settings:
-                    SettingsView(viewModel: viewModel)
                 }
             }
         }
@@ -60,5 +57,4 @@ enum AppRoute: Hashable {
     case timer
     case success
     case failed
-    case settings
 }

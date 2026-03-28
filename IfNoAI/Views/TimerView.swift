@@ -4,19 +4,24 @@ struct TimerView: View {
     @ObservedObject var viewModel: AppViewModel
 
     var body: some View {
-        VStack(spacing: 28) {
+        VStack(spacing: 24) {
             Text("专注中")
                 .font(.title.bold())
 
-            CityBlocksView(level: viewModel.cityState.level, isFailed: false)
-                .frame(height: 150)
+            FocusGrowthView(
+                progress: viewModel.sessionProgress,
+                isWithered: false,
+                isIdlePreview: false
+            )
+            .animation(.easeInOut(duration: 2.25), value: viewModel.sessionProgress)
 
             Text(timeString(from: viewModel.remainingSeconds))
                 .font(.system(size: 56, weight: .bold, design: .rounded))
                 .monospacedDigit()
 
-            Text("不要离开这个世界")
+            Text("文明正沿时间轴演进，不要离开")
                 .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
 
             Button("放弃", role: .destructive) {
                 viewModel.failSession()

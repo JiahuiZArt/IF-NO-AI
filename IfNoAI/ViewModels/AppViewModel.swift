@@ -12,7 +12,9 @@ final class AppViewModel: ObservableObject {
     @Published var currentSession: FocusSession?
     @Published var status: FocusStatus = .idle
     @Published var remainingSeconds: Int = 0
-    @Published var records: [Record]
+    /// 本轮计划总秒数（用于成长进度条）
+    private(set) var plannedTotalSeconds: Int = 0
+    @Published var records: [FocusRecord]
     @Published var showPicker = false
     @Published var alertMessage: String?
 
@@ -24,10 +26,10 @@ final class AppViewModel: ObservableObject {
 
     init(
         persistence: PersistenceService = PersistenceService(),
-        screenTimeService: ScreenTimeService = ScreenTimeService()
+        screenTimeService: ScreenTimeService? = nil
     ) {
         self.persistence = persistence
-        self.screenTimeService = screenTimeService
+        self.screenTimeService = screenTimeService ?? ScreenTimeService()
 
         self.cityState = persistence.loadCityState()
         self.streak = persistence.loadStreak()
@@ -42,10 +44,21 @@ final class AppViewModel: ObservableObject {
         timerTask?.cancel()
     }
 
+    /// 当前专注进度 0...1（非 running 为 0）
+    var sessionProgress: Double {
+        guard status == .running, plannedTotalSeconds > 0 else { return 0 }
+        return 1.0 - Double(remainingSeconds) / Double(plannedTotalSeconds)
+    }
+
     func saveSettings() {
+        selectedDuration = Self.clampMinutes(selectedDuration)
         persistence.saveSelectedDuration(selectedDuration)
         persistence.saveFailOnBackground(failOnBackground)
         persistence.saveSelectedApps(selectedApps)
+    }
+
+    private static func clampMinutes(_ m: Int) -> Int {
+        min(180, max(5, m))
     }
 
     func requestScreenTimeAuthorization() {
@@ -60,8 +73,12 @@ final class AppViewModel: ObservableObject {
 
     func startFocus() {
         requestScreenTimeAuthorization()
+        selectedDuration = Self.clampMinutes(selectedDuration)
+        persistence.saveSelectedDuration(selectedDuration)
+
         status = .running
-        remainingSeconds = selectedDuration * 60
+        plannedTotalSeconds = max(1, selectedDuration * 60)
+        remainingSeconds = plannedTotalSeconds
         currentSession = FocusSession(durationMinutes: selectedDuration, status: .running)
         screenTimeService.applyRestrictions(using: selectedApps)
 
@@ -95,6 +112,7 @@ final class AppViewModel: ObservableObject {
         status = .idle
         currentSession = nil
         remainingSeconds = 0
+        plannedTotalSeconds = 0
     }
 
     private func finishSession(success: Bool) {
@@ -114,7 +132,29 @@ final class AppViewModel: ObservableObject {
         if var session = currentSession {
             session.status = success ? .success : .failed
             currentSession = session
-            records.insert(Record(durationMinutes: session.durationMinutes, isSuccess: success), at: 0)
+
+            let elapsedSeconds = max(0, plannedTotalSeconds - remainingSeconds)
+            let elapsedMinutes = elapsedSeconds / 60
+            let endProgress: Double = {
+                if success { return 1 }
+                guard plannedTotalSeconds > 0 else { return 0 }
+                return 1.0 - Double(remainingSeconds) / Double(plannedTotalSeconds)
+            }()
+            let summary = FocusRecord.makeAchievementSummary(
+                completed: success,
+                plannedMinutes: session.durationMinutes,
+                elapsedMinutes: elapsedMinutes,
+                progress: endProgress
+            )
+            let record = FocusRecord(
+                startedAt: session.startDate,
+                plannedMinutes: session.durationMinutes,
+                elapsedMinutes: elapsedMinutes,
+                completed: success,
+                progressAtEnd: endProgress,
+                achievementSummary: summary
+            )
+            records.insert(record, at: 0)
             records = Array(records.prefix(100))
         }
 

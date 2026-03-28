@@ -24,7 +24,7 @@ IfNoAI/
 1. 使用 Xcode 打开 `IfNoAI.xcodeproj`。
 2. 设置你的 Team（Signing）。
 3. 在真机上授权 Screen Time（模拟器通常无法完整测试 FamilyControls 限制行为）。
-4. 运行应用，前往设置页选择要限制的 App。
+4. 运行应用，在首页选择要限制的 App 并开始专注。
 
 ## 关键能力
 

@@ -14,14 +14,16 @@
 		A00000000000000000000005 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000015 /* TimerView.swift */; };
 		A00000000000000000000006 /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000016 /* SuccessView.swift */; };
 		A00000000000000000000007 /* FailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000017 /* FailView.swift */; };
-		A00000000000000000000008 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000018 /* SettingsView.swift */; };
-		A00000000000000000000009 /* CityBlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000019 /* CityBlocksView.swift */; };
+		A00000000000000000000022 /* FocusGrowthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000023 /* FocusGrowthView.swift */; };
 		A0000000000000000000000A /* FocusSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001A /* FocusSession.swift */; };
 		A0000000000000000000000B /* CityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001B /* CityState.swift */; };
-		A0000000000000000000000C /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001C /* Record.swift */; };
+		A0000000000000000000000C /* FocusRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001C /* FocusRecord.swift */; };
 		A0000000000000000000000D /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001D /* AppViewModel.swift */; };
 		A0000000000000000000000E /* ScreenTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001E /* ScreenTimeService.swift */; };
 		A0000000000000000000000F /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0000000000000000000001F /* PersistenceService.swift */; };
+		A00000000000000000000024 /* CivilizationEra.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000026 /* CivilizationEra.swift */; };
+		A00000000000000000000025 /* CinematicGrowthStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000027 /* CinematicGrowthStage.swift */; };
+		A00000000000000000000028 /* AsteroidImpactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00000000000000000000029 /* AsteroidImpactView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,16 +35,18 @@
 		A00000000000000000000015 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		A00000000000000000000016 /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		A00000000000000000000017 /* FailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailView.swift; sourceTree = "<group>"; };
-		A00000000000000000000018 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A00000000000000000000019 /* CityBlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBlocksView.swift; sourceTree = "<group>"; };
+		A00000000000000000000023 /* FocusGrowthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusGrowthView.swift; sourceTree = "<group>"; };
 		A0000000000000000000001A /* FocusSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSession.swift; sourceTree = "<group>"; };
 		A0000000000000000000001B /* CityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityState.swift; sourceTree = "<group>"; };
-		A0000000000000000000001C /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A0000000000000000000001C /* FocusRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusRecord.swift; sourceTree = "<group>"; };
 		A0000000000000000000001D /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		A0000000000000000000001E /* ScreenTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeService.swift; sourceTree = "<group>"; };
 		A0000000000000000000001F /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		A00000000000000000000020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Resources/Info.plist; sourceTree = "<group>"; };
 		A00000000000000000000021 /* IfNoAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IfNoAI.entitlements; sourceTree = "<group>"; };
+		A00000000000000000000026 /* CivilizationEra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CivilizationEra.swift; sourceTree = "<group>"; };
+		A00000000000000000000027 /* CinematicGrowthStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinematicGrowthStage.swift; sourceTree = "<group>"; };
+		A00000000000000000000029 /* AsteroidImpactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidImpactView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +95,8 @@
 			children = (
 				A0000000000000000000001A /* FocusSession.swift */,
 				A0000000000000000000001B /* CityState.swift */,
-				A0000000000000000000001C /* Record.swift */,
+				A0000000000000000000001C /* FocusRecord.swift */,
+				A00000000000000000000026 /* CivilizationEra.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -113,8 +118,9 @@
 				A00000000000000000000015 /* TimerView.swift */,
 				A00000000000000000000016 /* SuccessView.swift */,
 				A00000000000000000000017 /* FailView.swift */,
-				A00000000000000000000018 /* SettingsView.swift */,
-				A00000000000000000000019 /* CityBlocksView.swift */,
+				A00000000000000000000023 /* FocusGrowthView.swift */,
+				A00000000000000000000027 /* CinematicGrowthStage.swift */,
+				A00000000000000000000029 /* AsteroidImpactView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,14 +208,16 @@
 				A00000000000000000000005 /* TimerView.swift in Sources */,
 				A00000000000000000000006 /* SuccessView.swift in Sources */,
 				A00000000000000000000007 /* FailView.swift in Sources */,
-				A00000000000000000000008 /* SettingsView.swift in Sources */,
-				A00000000000000000000009 /* CityBlocksView.swift in Sources */,
+				A00000000000000000000022 /* FocusGrowthView.swift in Sources */,
 				A0000000000000000000000A /* FocusSession.swift in Sources */,
 				A0000000000000000000000B /* CityState.swift in Sources */,
-				A0000000000000000000000C /* Record.swift in Sources */,
+				A0000000000000000000000C /* FocusRecord.swift in Sources */,
 				A0000000000000000000000D /* AppViewModel.swift in Sources */,
 				A0000000000000000000000E /* ScreenTimeService.swift in Sources */,
 				A0000000000000000000000F /* PersistenceService.swift in Sources */,
+				A00000000000000000000024 /* CivilizationEra.swift in Sources */,
+				A00000000000000000000025 /* CinematicGrowthStage.swift in Sources */,
+				A00000000000000000000028 /* AsteroidImpactView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

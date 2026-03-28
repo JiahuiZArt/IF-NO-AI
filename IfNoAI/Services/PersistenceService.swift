@@ -8,10 +8,18 @@ final class PersistenceService {
         static let cityState = "cityState"
         static let streak = "streak"
         static let lastSuccessDate = "lastSuccessDate"
-        static let records = "records"
+        static let recordsLegacy = "records"
+        static let focusRecords = "focusRecords"
         static let selectedDuration = "selectedDuration"
         static let failOnBackground = "failOnBackground"
         static let selectedApps = "selectedApps"
+    }
+
+    private struct LegacyRecord: Codable {
+        let id: UUID
+        let date: Date
+        let durationMinutes: Int
+        let isSuccess: Bool
     }
 
     func saveCityState(_ state: CityState) {
@@ -38,12 +46,25 @@ final class PersistenceService {
         defaults.object(forKey: Keys.lastSuccessDate) as? Date
     }
 
-    func saveRecords(_ records: [Record]) {
-        save(records, forKey: Keys.records)
+    func saveRecords(_ records: [FocusRecord]) {
+        save(records, forKey: Keys.focusRecords)
     }
 
-    func loadRecords() -> [Record] {
-        load(type: [Record].self, forKey: Keys.records) ?? []
+    func loadRecords() -> [FocusRecord] {
+        if let data = defaults.data(forKey: Keys.focusRecords),
+           let decoded = try? JSONDecoder().decode([FocusRecord].self, from: data) {
+            return decoded
+        }
+        if let data = defaults.data(forKey: Keys.recordsLegacy),
+           let legacy = try? JSONDecoder().decode([LegacyRecord].self, from: data) {
+            let migrated = legacy.map {
+                FocusRecord(migratingLegacy: $0.id, date: $0.date, durationMinutes: $0.durationMinutes, isSuccess: $0.isSuccess)
+            }
+            saveRecords(migrated)
+            defaults.removeObject(forKey: Keys.recordsLegacy)
+            return migrated
+        }
+        return []
     }
 
     func saveSelectedDuration(_ duration: Int) {
@@ -51,8 +72,9 @@ final class PersistenceService {
     }
 
     func loadSelectedDuration() -> Int {
-        let value = defaults.integer(forKey: Keys.selectedDuration)
-        return [30, 60, 120].contains(value) ? value : 30
+        let v = defaults.integer(forKey: Keys.selectedDuration)
+        if v == 0 { return 30 }
+        return min(180, max(5, v))
     }
 
     func saveFailOnBackground(_ enabled: Bool) {
